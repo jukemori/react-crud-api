@@ -6,6 +6,7 @@ import {
 
 import List from './components/List';
 import Detail from './components/Detail';
+import New from './components/New';
 
 const App = () => {
   return (
@@ -13,6 +14,7 @@ const App = () => {
       <Routes>
         <Route path='/' element={<List />} />
         <Route path='/actors/:id' element={<Detail />} />
+        <Route path='/new' element={<New />} />
       </Routes>
     </BrowserRouter>
   );

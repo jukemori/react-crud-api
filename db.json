@@ -1,0 +1,18 @@
+{
+  "actors": [
+    {
+      "id": 2,
+      "name": "Margot Robbie",
+      "country": "Australia",
+      "created_at": "2023-08-16T12:44:47.691Z",
+      "updated_at": "2023-08-16T12:44:47.691Z"
+    },
+    {
+      "id": 3,
+      "name": "Tom Cruz",
+      "country": "United States",
+      "created_at": "2023-08-16T12:53:54.980Z",
+      "updated_at": "2023-08-16T12:53:54.980Z"
+    }
+  ]
+}

@@ -1,4 +1,4 @@
-import client from "./client";
+import client from "./db";
 
 // get
 export const getList = () => {

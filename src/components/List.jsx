@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { getList } from '../lib/api/actor';
+import { deleteActor, getList } from '../lib/api/actor';
 import { useHistory, Link } from 'react-router-dom';
 
 const List = () => {
   const [dataList, setDataList] = useState([]);
+
+  const history = useHistory();
+
 
   useEffect(() => {
     handleGetList();
@@ -19,10 +22,22 @@ const List = () => {
     }
   };
 
+  const handleDelete = async (item) => {
+    console.log('click', item.id)
+    try {
+      const res = await deleteActor(item.id)
+      console.log(res.data)
+
+      handleGetList()
+    } catch (e) {
+      console.log(e)
+    }
+  }
+
   return (
     <>
       <h1>HOME</h1>
-      <button>Create</button>
+      <button onClick={() => history.push('/new')}>Create</button>
       <table>
         <thead>
           <tr>
@@ -45,7 +60,7 @@ const List = () => {
                 <Link to={`/actors/${item.id}`}>Detail</Link>
               </td>
               <td>
-                <button>Delete</button>
+                <button onClick={() => handleDelete(item)}>Delete</button>
               </td>
             </tr>
           </tbody>
