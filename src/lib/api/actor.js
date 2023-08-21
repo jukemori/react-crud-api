@@ -1,16 +1,26 @@
-// client.js
-import applyCaseMiddleware from "axios-case-converter";
-import axios from "axios";
+import client from "./client";
 
-const options = {
-  ignoreHeaders: true,
+// get
+export const getList = () => {
+  return client.get("/actors");
 };
 
-const client = applyCaseMiddleware(
-  axios.create({
-    baseURL: "http://localhost:3000/api/v1",
-  }),
-  options
-);
+// detail
+export const getDetail = (id) => {
+  return client.get(`/actors/${id}`);
+};
 
-export default client;
+// create
+export const createActor = (params) => {
+  return client.actor("/actors", params);
+};
+
+// update
+export const updateActor = (id, params) => {
+  return client.patch(`/actors/${id}`, params);
+};
+
+// delete
+export const deleteActor = (id) => {
+  return client.delete(`/actors/${id}`);
+};

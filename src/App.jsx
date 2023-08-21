@@ -1,4 +1,18 @@
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+} from 'react-router-dom';
+
+import List from './components/List';
+
 const App = () => {
-  return <h1>Hello World</h1>;
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' element={<List />} />
+      </Routes>
+    </BrowserRouter>
+  );
 };
 export default App;
