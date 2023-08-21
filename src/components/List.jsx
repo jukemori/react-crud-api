@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { deleteActor, getList } from '../lib/api/actor';
-import { useHistory, Link } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 const List = () => {
   const [dataList, setDataList] = useState([]);
 
-  const history = useHistory();
+  const navigate = useNavigate();
 
 
   useEffect(() => {
@@ -37,7 +37,7 @@ const List = () => {
   return (
     <>
       <h1>HOME</h1>
-      <button onClick={() => history.push('/new')}>Create</button>
+      <button onClick={() => navigate('/new')}>Create</button>
       <table>
         <thead>
           <tr>

@@ -12,7 +12,7 @@ export const getDetail = (id) => {
 
 // create
 export const createActor = (params) => {
-  return client.actor("/actors", params);
+  return client.post("/actors", params);
 };
 
 // update

@@ -1,12 +1,11 @@
-// New.jsx
-import React, { useState } from 'react';
+import  { useState } from 'react';
 import FormBody from './Form';
-import { createPost } from '../lib/api/post';
-import { useHistory } from 'react-router-dom';
+import { createActor } from '../lib/api/actor';
+import { useNavigate } from 'react-router-dom';
 
 const New = () => {
   const [value, setValue] = useState({})
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setValue({
@@ -18,9 +17,9 @@ const New = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await createPost(value)
+      const res = await createActor(value)
       console.log(res)
-      history.push('/')
+      navigate('/')
     } catch (e) {
       console.log(e)
     }
@@ -33,7 +32,7 @@ const New = () => {
         handleChange={handleChange}
         handleSubmit={handleSubmit}
         value={value}
-        buttonType='登録'
+        buttonType='create'
       />
     </>
   )
