@@ -1,38 +1,34 @@
+// List.jsx
 import React, { useEffect, useState } from 'react';
-import { deleteActor, getList } from '../lib/api/actor';
 import { useNavigate, Link } from 'react-router-dom';
+import { deleteActor, getList } from '../lib/api/actor';
 
-const List = () => {
+function List() {
   const [dataList, setDataList] = useState([]);
-
   const navigate = useNavigate();
 
-
   useEffect(() => {
-    handleGetList();
+    fetchList();
   }, []);
 
-  const handleGetList = async () => {
+  const fetchList = async () => {
     try {
-      const res = await getList();
-      console.log(res.data);
-      setDataList(res.data);
-    } catch (e) {
-      console.log(e);
+      const response = await getList();
+      setDataList(response.data);
+    } catch (error) {
+      console.error(error);
     }
   };
 
   const handleDelete = async (item) => {
-    console.log('click', item.id)
     try {
-      const res = await deleteActor(item.id)
-      console.log(res.data)
-
-      handleGetList()
-    } catch (e) {
-      console.log(e)
+      const response = await deleteActor(item.id);
+      console.log(response.data);
+      fetchList();
+    } catch (error) {
+      console.error(error);
     }
-  }
+  };
 
   return (
     <>
@@ -48,9 +44,9 @@ const List = () => {
             <th colSpan='1'></th>
           </tr>
         </thead>
-        {dataList.map((item, index) => (
-          <tbody key={index}>
-            <tr>
+        <tbody>
+          {dataList.map((item) => (
+            <tr key={item.id}>
               <td>{item.name}</td>
               <td>{item.country}</td>
               <td>
@@ -63,10 +59,11 @@ const List = () => {
                 <button onClick={() => handleDelete(item)}>Delete</button>
               </td>
             </tr>
-          </tbody>
-        ))}
+          ))}
+        </tbody>
       </table>
     </>
   );
-};
+}
+
 export default List;

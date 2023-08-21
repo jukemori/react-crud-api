@@ -1,29 +1,31 @@
-import  { useState } from 'react';
+// New.jsx
+import React, { useState } from 'react';
 import FormBody from './Form';
 import { createActor } from '../lib/api/actor';
 import { useNavigate } from 'react-router-dom';
 
-const New = () => {
-  const [value, setValue] = useState({})
+function New() {
+  const [value, setValue] = useState({});
   const navigate = useNavigate();
 
   const handleChange = (e) => {
-    setValue({
-      ...value,
-      [e.target.name]: e.target.value
-    })
-  }
+    const { name, value } = e.target;
+    setValue((prevValue) => ({
+      ...prevValue,
+      [name]: value,
+    }));
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await createActor(value)
-      console.log(res)
-      navigate('/')
-    } catch (e) {
-      console.log(e)
+      const response = await createActor(value);
+      console.log(response);
+      navigate('/');
+    } catch (error) {
+      console.error(error);
     }
-  }
+  };
 
   return (
     <>
@@ -35,6 +37,7 @@ const New = () => {
         buttonType='create'
       />
     </>
-  )
-};
+  );
+}
+
 export default New;

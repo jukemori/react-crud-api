@@ -17,7 +17,7 @@ export const createActor = (params) => {
 
 // update
 export const updateActor = (id, params) => {
-  return client.patch(`/actors/${id}`, params);
+  return client.put(`/actors/${id}`, params);
 };
 
 // delete
