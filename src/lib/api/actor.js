@@ -1,8 +1,8 @@
-import client from "./db";
+import client from './client';
 
 // get
 export const getList = () => {
-  return client.get("/actors");
+  return client.get('/actors');
 };
 
 // detail
@@ -12,7 +12,7 @@ export const getDetail = (id) => {
 
 // create
 export const createActor = (params) => {
-  return client.post("/actors", params);
+  return client.post('/actors', params);
 };
 
 // update
