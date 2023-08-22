@@ -40,8 +40,7 @@ function Edit() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await updateActor(query.id, value);
-      console.log(response);
+      await updateActor(query.id, value);
       navigate('/');
     } catch (error) {
       console.error(error);
@@ -49,15 +48,15 @@ function Edit() {
   };
 
   return (
-    <>
+    <div className="container">
       <h1>Edit</h1>
       <FormBody
         handleChange={handleChange}
         handleSubmit={handleSubmit}
         value={value}
-        buttonType='update'
+        buttonType="Update"
       />
-    </>
+    </div>
   );
 }
 

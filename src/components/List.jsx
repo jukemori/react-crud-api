@@ -1,5 +1,4 @@
-// List.jsx
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { deleteActor, getList } from '../lib/api/actor';
 
@@ -22,47 +21,37 @@ function List() {
 
   const handleDelete = async (item) => {
     try {
-      const response = await deleteActor(item.id);
-      console.log(response.data);
-      fetchList();
+      await deleteActor(item.id);
+      // Remove the deleted item from the dataList state
+      setDataList((prevDataList) => prevDataList.filter((dataItem) => dataItem.id !== item.id));
     } catch (error) {
       console.error(error);
     }
   };
 
   return (
-    <>
-      <h1>HOME</h1>
-      <button onClick={() => navigate('/new')}>Create</button>
-      <table>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Country</th>
-            <th colSpan='1'></th>
-            <th colSpan='1'></th>
-            <th colSpan='1'></th>
-          </tr>
-        </thead>
-        <tbody>
-          {dataList.map((item) => (
-            <tr key={item.id}>
-              <td>{item.name}</td>
-              <td>{item.country}</td>
-              <td>
-                <Link to={`/edit/${item.id}`}>Update</Link>
-              </td>
-              <td>
-                <Link to={`/actors/${item.id}`}>Detail</Link>
-              </td>
-              <td>
-                <button onClick={() => handleDelete(item)}>Delete</button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </>
+    <div className="container">
+      <h1>Actors</h1>
+      <button className="btn btn-primary" onClick={() => navigate('/new')}>
+        Add
+      </button>
+      <div className="card-deck mt-3">
+        {dataList.map((item) => (
+          <div className="card mb-3" style={{ width: '18rem' }} key={item.id}>
+            <div className="card-body">
+              <h5 className="card-title">{item.name}</h5>
+              <h6 className="card-text text-muted">Country: {item.country}</h6>
+              <Link to={`/edit/${item.id}`} className="btn btn-primary me-2">
+                Edit
+              </Link>
+              <button className="btn btn-danger" onClick={() => handleDelete(item)}>
+                Delete
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
   );
 }
 

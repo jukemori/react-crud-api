@@ -1,36 +1,36 @@
-import React from 'react';
-
 function Form({ handleChange, handleSubmit, value, buttonType }) {
   return (
-    <>
-      <form>
-        <div>
-          <label htmlFor="name">Name:</label>
-          <input
-            type="text"
-            name="name"
-            id="name"
-            onChange={handleChange}
-            value={value.name || ''}
-          />
-        </div>
-        <div>
-          <label htmlFor="country">Country:</label>
-          <input
-            type="text"
-            name="country"
-            id="country"
-            onChange={handleChange}
-            value={value.country || ''}
-          />
-        </div>
+    <form className="container mt-4 p-0">
+      <div className="mb-3">
+        <label htmlFor="name" className="form-label">
+          Name:
+        </label>
         <input
-          type="submit"
-          value={buttonType}
-          onClick={handleSubmit}
+          type="text"
+          className="form-control"
+          id="name"
+          name="name"
+          onChange={handleChange}
+          value={value.name || ''}
         />
-      </form>
-    </>
+      </div>
+      <div className="mb-3">
+        <label htmlFor="country" className="form-label">
+          Country:
+        </label>
+        <input
+          type="text"
+          className="form-control"
+          id="country"
+          name="country"
+          onChange={handleChange}
+          value={value.country || ''}
+        />
+      </div>
+      <button type="submit" className="btn btn-primary" onClick={handleSubmit}>
+        {buttonType}
+      </button>
+    </form>
   );
 }
 
